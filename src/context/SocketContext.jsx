@@ -2,6 +2,7 @@ import io from 'socket.io-client';
 import {createContext,useContext, useEffect, useState} from 'react';
 import { useAuth } from './AuthContext';
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 const socketContext = createContext();
 
 export const useSocketContext=()=>{
@@ -14,7 +15,7 @@ export const SocketContextProvider=({children})=>{
     const {authUser} = useAuth()
     useEffect(()=>{
         if(authUser){
-            const socket = io('https://flowchat-backend--anums1113.replit.app',{
+            const socket = io(BACKEND_URL,{
                 query:{
                     userId:authUser?._id,
                 }

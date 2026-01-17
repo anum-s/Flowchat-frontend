@@ -8,7 +8,9 @@ export default defineConfig({
   server:{
     proxy:{
       '/api':{
-        target:'https://flowchat-backend--anums1113.replit.app',secure:false
+        target: import.meta.env.VITE_BACKEND_URL ,
+        changeOrigin: true,
+        secure:false
       }
     }
   }
