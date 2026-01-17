@@ -2,7 +2,10 @@ import io from 'socket.io-client';
 import {createContext,useContext, useEffect, useState} from 'react';
 import { useAuth } from './AuthContext';
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+// const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+const getBackendUrl = () =>
+  import.meta.env?.VITE_BACKEND_URL || "http://localhost:5000";
+
 const socketContext = createContext();
 
 export const useSocketContext=()=>{
@@ -15,7 +18,7 @@ export const SocketContextProvider=({children})=>{
     const {authUser} = useAuth()
     useEffect(()=>{
         if(authUser){
-            const socket = io(BACKEND_URL,{
+            const socket = io(getBackendUrl(),{
                 query:{
                     userId:authUser?._id,
                 },
