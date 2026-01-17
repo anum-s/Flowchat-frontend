@@ -10,7 +10,7 @@
 }
 
 body{
-  background: url('./src/assets/pexels-karola-g-6276050.jpg');
+  background: url('/pexels-karola-g-6276050.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
