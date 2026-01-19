@@ -4,7 +4,6 @@ import { useAuth } from '../context/AuthContext';
 import { useEffect, useState, useRef} from 'react';
 import axios from 'axios';
 import { useSocketContext } from '../context/SocketContext';
-import fbNotify from '../assets/sound/Facebook-Notification.mp3'
 
 
 const MessageContainer = ({onBackUser}) => {
@@ -43,7 +42,7 @@ const MessageContainer = ({onBackUser}) => {
       if (!socket) return;
       socket?.on("newMessage",(newMessage)=>{
         setMessages([...messages,newMessage])
-        const sound = new Audio(fbNotify);
+        const sound = new Audio('/sound/Facebook-Notification.mp3');
         sound.play()
       })
       return()=> socket?.off("newMessage");
