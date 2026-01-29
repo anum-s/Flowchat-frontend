@@ -9,12 +9,13 @@
     display: none;
 }
 
-:global(body){
-  background: url('/pexels-karola-g-6276050.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+body{
+    background-color: red;
+    background: url('/pexels-karola-g-6276050.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 
