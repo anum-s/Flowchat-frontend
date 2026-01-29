@@ -9,7 +9,7 @@
     display: none;
 }
 
-body{
+:global(body){
   background: url('/pexels-karola-g-6276050.jpg');
   background-repeat: no-repeat;
   background-size: cover;
