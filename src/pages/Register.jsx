@@ -32,7 +32,7 @@ console.log(inputData);
         return toast.error("Password doesn't match")
     }
     try {
-      const register = await axios.post('/api/auth/register', inputData)
+      const register = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, inputData)
         const data = register.data;
             if (data.success === false) {
                 setLoading(false)

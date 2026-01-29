@@ -92,7 +92,7 @@ const Sidebar = ({onSelectUser}) => {
     e.preventDefault()
     setLoading(true)
     try {
-      const search = await axios.get(`/api/user/search?search=${searchInput}`)
+      const search = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/user/search?search=${searchInput}`)
       const data = search.data;
       if (data.success === false) {
         setLoading(false)

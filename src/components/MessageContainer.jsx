@@ -58,7 +58,7 @@ const MessageContainer = ({onBackUser}) => {
       const getMessages = async()=>{
         setLoading(true);
         try {
-          const get = await axios.get(`/api/message/${selectedConversation?._id}`);
+          const get = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/message/${selectedConversation?._id}`);
           const data =  await get.data
           if(data.success === false){
             setLoading(false);
