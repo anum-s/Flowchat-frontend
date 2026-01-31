@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../utils/axios";
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify";
@@ -24,7 +24,7 @@ console.log(userInput);
     e.preventDefault();
     setLoading(true)
     try {
-      const login = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, userInput)
+      const login = await api.post("/api/auth/login", userInput)
         const data = login.data;
         console.log("Login response:", data);
 

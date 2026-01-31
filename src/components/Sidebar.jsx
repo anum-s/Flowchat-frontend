@@ -1,7 +1,7 @@
 import {MagnifyingGlassIcon , EllipsisVerticalIcon , ArrowLeftIcon} from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import api from '../utils/axios'
 import {toast} from 'react-toastify'
 import { useAuth } from '../context/AuthContext';
 import userConversation from '../zustand/UseConversation'
@@ -70,7 +70,7 @@ const Sidebar = ({onSelectUser}) => {
     const chatUserHandler = async()=>{
       setLoading(true)
       try {
-        const chatter = await axios.get(`/api/user/currentchatters`)
+        const chatter = await api.get("/api/user/currentchatters")
         const data = chatter.data;
         if (data.success === false) {
         setLoading(false)
@@ -92,7 +92,7 @@ const Sidebar = ({onSelectUser}) => {
     e.preventDefault()
     setLoading(true)
     try {
-      const search = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/user/search?search=${searchInput}`)
+      const search = await api.get(`/api/user/search?search=${searchInput}`)
       const data = search.data;
       if (data.success === false) {
         setLoading(false)
@@ -117,7 +117,7 @@ const Sidebar = ({onSelectUser}) => {
   const handleLogout = async()=>{
     setLoading(true)
     try {
-      const logout = await axios.post(`/api/auth/logout`)
+      const logout = await api.post("/api/auth/logout")
       const data  = logout.data;
       if (data.success === false) {
         setLoading(false)

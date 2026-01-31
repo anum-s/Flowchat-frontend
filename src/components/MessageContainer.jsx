@@ -2,7 +2,7 @@ import {ArrowLeftIcon,PaperAirplaneIcon} from '@heroicons/react/24/outline'
 import userConversation from '../zustand/UseConversation';
 import { useAuth } from '../context/AuthContext';
 import { useEffect, useState, useRef} from 'react';
-import axios from 'axios';
+import api from '../utils/axios';
 import { useSocketContext } from '../context/SocketContext';
 
 
@@ -58,7 +58,7 @@ const MessageContainer = ({onBackUser}) => {
       const getMessages = async()=>{
         setLoading(true);
         try {
-          const get = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/message/${selectedConversation?._id}`);
+          const get = await api.get(`/api/message/${selectedConversation?._id}`);
           const data =  await get.data
           if(data.success === false){
             setLoading(false);
@@ -84,7 +84,7 @@ const handleSubmit=async(e)=>{
   e.preventDefault();
   setSending(true);
   try {
-    const res = await axios.post(`/api/message/send/${selectedConversation?._id}`,{message:sendData});
+    const res = await api.post(`/api/message/send/${selectedConversation?._id}`,{message:sendData});
     const data =  await res.data
     if(data.success === false){
       setSending(false);

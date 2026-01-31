@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../utils/axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from '../context/AuthContext';
@@ -32,7 +32,7 @@ console.log(inputData);
         return toast.error("Password doesn't match")
     }
     try {
-      const register = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, inputData)
+      const register = await api.post("/api/auth/register", inputData)
         const data = register.data;
             if (data.success === false) {
                 setLoading(false)
@@ -40,7 +40,6 @@ console.log(inputData);
                 console.log(data.message);
             }
             toast.success(data.User?.message);
-            // toast.success(data.message || "Registered successfully!")
             localStorage.setItem('FlowChat',JSON.stringify(data))
             setAuthUser (data)
             setLoading(false)
@@ -52,11 +51,6 @@ console.log(inputData);
         toast.error(error?.response?.data?.message)
     }
   }
-
-  // original form class
-        // <div className="mb-5">
-        //   <input type="text" id="username" onChange={handleInput} className="border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Username" required />
-        //   </div>
 
 return (
 <div className="flex w-full min-h-screen px-8">
