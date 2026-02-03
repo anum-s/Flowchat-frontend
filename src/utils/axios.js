@@ -5,15 +5,5 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// for attach token to every request
-api.interceptors.request.use((config) => {
-  const stored = localStorage.getItem("FlowChat");
-  const token = stored ? JSON.parse(stored).token : null;
-
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
 
 export default api;
