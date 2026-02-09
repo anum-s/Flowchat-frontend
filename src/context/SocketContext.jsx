@@ -8,9 +8,6 @@ export const useSocketContext=()=>{
     return useContext(socketContext);
 }
 
-const getBackendUrl = () =>
-  import.meta.env?.VITE_BACKEND_URL || "http://localhost:5000";
-
 export const SocketContextProvider=({children})=>{
     const [socket,setSocket] = useState(null);
     const [onlineUsers,setOnlineUsers] = useState([]);
@@ -25,7 +22,7 @@ export const SocketContextProvider=({children})=>{
       return
     }
 
-    const newSocket = io(getBackendUrl(), {
+    const newSocket = io(window.location.origin, {
       query: {
         userId: authUser?._id
       },
